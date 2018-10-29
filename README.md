@@ -9,7 +9,7 @@ $order->test();
 $rlt=$order->get([
     'symbol'=>'ADAZ18',
 ]);
-print_r($a);
+print_r($rlt);
 
 //创建新订单
 $data=[
@@ -19,6 +19,7 @@ $data=[
     'ordType'=>'Limit',
 ];
 $rlt=$order->post($data);
+print_r($rlt);
 
 //功能多API请查看API
 ```
