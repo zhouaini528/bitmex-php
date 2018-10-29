@@ -3,7 +3,7 @@
 订单类的初始化
 ```php
 $order=new \Lin\Bitmex\Api\Order($key, $secret);
-$order->test();
+//$order->test();
 
 //订单查询
 $rlt=$order->get([
@@ -27,7 +27,7 @@ print_r($rlt);
 用户类的初始化
 ```php
 $user=new \Lin\Bitmex\Api\User($key, $secret);
-$user->test();
+//$user->test();
 
 //订单查询
 $rlt=$user->get();
@@ -36,7 +36,10 @@ print_r($rlt);
 //功能多API请查看API
 ```
 
+测试服务器[https://testnet.bitmex.com](https://testnet.bitmex.com)
 
-$class->test();
+测试服务器需要用到该方法：$class->test();正式部署注释掉该方法。
 
-初始化该方法是请求测试服务器，正式部署注释掉该方法
+正式服务器[https://www.bitmex.com](https://www.bitmex.com)
+
+
