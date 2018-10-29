@@ -1,5 +1,5 @@
 {
-    "name": "bitmex",
+    "name": "lin/bitmex",
     "type": "library",
     "description": "Bitmex API",
     "license": "MIT",
