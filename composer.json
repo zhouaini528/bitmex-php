@@ -1,0 +1,20 @@
+{
+    "name": "bitmex",
+    "type": "library",
+    "description": "Bitmex API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lin",
+            "email": "465382251@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lin\\Bitmex\\": "./src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
