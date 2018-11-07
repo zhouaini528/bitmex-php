@@ -6,6 +6,7 @@
 namespace Lin\Bitmex;
 
 use GuzzleHttp\Exception\RequestException;
+use Lin\Bitmex\Exceptions\Exception;
 
 class Bitmex
 {
@@ -124,8 +125,8 @@ class Bitmex
         try {
             return $this->send();
         }catch (RequestException $e){
-            //TODO  该流程记录日志
-            print_r($e->getMessage());
+            //TODO  该流程可以记录各种日志
+            throw new Exception($e->getMessage());
         }
     }
 }
