@@ -8,8 +8,9 @@
 
 正式服务器[https://www.bitmex.com](https://www.bitmex.com)
 
+所有的接口方式初始化与bitmex提供的接口方式一样，详细请看src/api
 
-//行情数据初始化
+行情数据初始化
 ```php
 //$host 可以不传入，默认正式服务器访问；
 $order=new \Lin\Bitmex\Api\OrderBook($key, $secret,$host);
