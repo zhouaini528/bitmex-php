@@ -13,8 +13,6 @@ class Bitmex
     /**
      * 是否开启bitmex测试账号，需要先去申请测试账号。
      * */
-    private $test=false;
-    
     protected $key='';
     
     protected $secret='';
@@ -35,26 +33,14 @@ class Bitmex
     
     protected $timeout=15;
     
-    public function __construct(string $key,string $secret)
+    public function __construct(string $key,string $secret,string $host='https://www.bitmex.com')
     {
         $this->key = $key;
         
         $this->secret=$secret;
         
-        if(empty($host)) $this->host='https://www.bitmex.com';
-    }
-    
-    /**
-     * 是否开启测试
-     * */
-    public function test($value=true){
-        $this->test=$value;
-        
-        if($this->test) {
-            $this->host='https://testnet.bitmex.com';
-        }else{
-            $this->host='https://www.bitmex.com';
-        }
+        //https://testnet.bitmex.com 测试服务器
+        $this->host=$host;
     }
     
     /**
