@@ -18,7 +18,7 @@ class Order extends Bitmex
              * 时间
         ];
      * */
-    public function get($data){
+    public function get($data=[]){
         $this->type='GET';
         $this->path='/api/v1/order';
         $this->data=$data;
@@ -34,8 +34,9 @@ class Order extends Bitmex
      * $data=[
             'symbol'=>'XBTUSD',
             'price'=>'10',
+            'side'=>'sell,buy',该参数可以为空。则价格正负代表做多~做空
             'orderQty'=>'10',
-            'ordType'=>'Limit',
+            'ordType'=>'Limit',//limit 限价交易
         ];
      * */
     public function post($data){
