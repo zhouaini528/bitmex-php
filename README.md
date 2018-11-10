@@ -13,7 +13,7 @@
 行情数据初始化
 ```php
 //$host 可以不传入，默认正式服务器访问；
-$order=new \Lin\Bitmex\Api\OrderBook($key, $secret,$host);
+$order=new \Lin\Bitmex\Api\OrderBook();
 $rlt=$order->get();
 print_r($rlt);
 //功能多API请查看API

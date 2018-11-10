@@ -33,7 +33,7 @@ class Bitmex
     
     protected $timeout=15;
     
-    public function __construct(string $key,string $secret,string $host='https://www.bitmex.com')
+    public function __construct(string $key='',string $secret='',string $host='https://www.bitmex.com')
     {
         $this->key = $key;
         
@@ -75,10 +75,15 @@ class Bitmex
     protected function headers(){
         $this->headers=[
             'accept' => 'application/json',
-            'api-expires'      => $this->nonce,
-            'api-key'=>$this->key,
-            'api-signature' => $this->signature,
         ];
+        
+        if(!empty($this->key) && !empty($this->secret)) {
+            $this->headers=array_merge($this->headers,[
+                'api-expires'      => $this->nonce,
+                'api-key'=>$this->key,
+                'api-signature' => $this->signature,
+            ]);
+        }
         
         if(!empty($this->data)) $this->headers['content-type']='application/x-www-form-urlencoded';
     }
