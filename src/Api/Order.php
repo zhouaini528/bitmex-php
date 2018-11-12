@@ -26,6 +26,30 @@ class Order extends Bitmex
         return $this->exec();
     }
     
+    /**
+     * 
+     * */
+    public function getOne(array $data){
+        if(!isset($data['orderID']) && !isset($data['clOrdID']) ) return [];
+        
+        
+        $data=[
+            'reverse'=>'true',
+            'count'=>1,
+            'filter'=>json_encode($data)
+        ];
+        
+        return $this->get($data);
+    }
+    
+    public function getAll(array $data){
+        if(!isset($data['count'])) $data['count']=100;//默认100条
+        
+        $data['reverse']='true';
+        
+        return $this->get($data);
+    }
+    
     public function put($data){
         
     }
