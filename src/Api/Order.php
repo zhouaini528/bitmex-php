@@ -72,7 +72,11 @@ class Order extends Bitmex
     }
     
     public function delete($data){
+        $this->type='DELETE';
+        $this->path='/api/v1/order';
+        $this->data=$data;
         
+        return $this->exec();
     }
     
     public function putBulk($data){

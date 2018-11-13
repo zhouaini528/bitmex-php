@@ -114,7 +114,7 @@ class Bitmex
         
         //可以记录日志
         try {
-            return $this->send();
+            return json_decode($this->send(),true);
         }catch (RequestException $e){
             //TODO  该流程可以记录各种日志
             throw new Exception($e->getMessage());

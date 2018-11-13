@@ -2,7 +2,6 @@
 namespace Lin\Bitmex\Api;
 
 use Lin\Bitmex\Bitmex;
-use Lin\Bitmex\Exceptions\UserException;
 
 class User extends Bitmex
 {
@@ -10,7 +9,7 @@ class User extends Bitmex
         $this->type='GET';
         $this->path='/api/v1/user';
         
-        $this->exec();
+        return $this->exec();
     }
     
     public function put($data){
@@ -18,10 +17,34 @@ class User extends Bitmex
         $this->path='/api/v1/user';
         $this->data=$data;
         
-        $this->exec();
+        return $this->exec();
     }
     
     public function post($data){
         
+    }
+    
+    /**
+     * 获取钱包余额
+     * https://testnet.bitmex.com/api/v1/user/wallet?currency=XBt
+     * */
+    public function getWallet($data){
+        $this->type='GET';
+        $this->path='/api/v1/user/wallet';
+        $this->data=$data;
+        
+        return $this->exec();
+    }
+    
+    /**
+     * 获取保证金余额
+     * https://testnet.bitmex.com/api/v1/user/margin?currency=XBt
+     * */
+    public function getMargin($data){
+        $this->type='GET';
+        $this->path='/api/v1/user/margin';
+        $this->data=$data;
+        
+        return $this->exec();
     }
 }
