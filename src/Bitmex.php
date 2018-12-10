@@ -31,7 +31,7 @@ class Bitmex
     
     protected $data=[];
     
-    protected $timeout=15;
+    protected $timeout=10;
     
     public function __construct(string $key='',string $secret='',string $host='https://www.bitmex.com')
     {

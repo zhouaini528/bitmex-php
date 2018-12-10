@@ -31,15 +31,17 @@ class Order extends Bitmex
      * */
     public function getOne(array $data){
         if(!isset($data['orderID']) && !isset($data['clOrdID']) ) return [];
-        
+        $symbol=$data['symbol'];
+        unset($data['symbol']);
         
         $data=[
             'reverse'=>'true',
+            'symbol'=>$symbol,
             'count'=>1,
             'filter'=>json_encode($data)
         ];
         
-        return $this->get($data);
+        return current($this->get($data));
     }
     
     public function getAll(array $data){
