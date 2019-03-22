@@ -1,9 +1,9 @@
 <?php
 namespace Lin\Bitmex\Api;
 
-use Lin\Bitmex\Bitmex;
+use Lin\Bitmex\Request;
 
-class ApiKey extends Bitmex
+class ApiKey extends Request
 {
     public function get(){
         $this->type='GET';

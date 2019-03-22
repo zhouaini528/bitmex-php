@@ -5,119 +5,187 @@
 
 namespace Lin\Bitmex;
 
-use GuzzleHttp\Exception\RequestException;
-use Lin\Bitmex\Exceptions\Exception;
+use Lin\Bitmex\Api\Announcement;
+use Lin\Bitmex\Api\ApiKey;
+use Lin\Bitmex\Api\Chat;
+use Lin\Bitmex\Api\Execution;
+use Lin\Bitmex\Api\Funding;
+use Lin\Bitmex\Api\GlobalNotification;
+use Lin\Bitmex\Api\Instrument;
+use Lin\Bitmex\Api\Insurance;
+use Lin\Bitmex\Api\Leaderboard;
+use Lin\Bitmex\Api\Liquidation;
+use Lin\Bitmex\Api\Order;
+use Lin\Bitmex\Api\OrderBook;
+use Lin\Bitmex\Api\Position;
+use Lin\Bitmex\Api\Quote;
+use Lin\Bitmex\Api\Schema;
+use Lin\Bitmex\Api\Settlement;
+use Lin\Bitmex\Api\Stats;
+use Lin\Bitmex\Api\User;
+use Lin\Bitmex\Api\UserEvent;
+use Lin\Bitmex\Api\Trade;
 
 class Bitmex
 {
-    /**
-     * 是否开启bitmex测试账号，需要先去申请测试账号。
-     * */
-    protected $key='';
+    protected $key;
+    protected $secret;
+    protected $host;
     
-    protected $secret='';
-    
-    protected $host='';
-    
-    protected $nonce='';
-    
-    protected $signature='';
-    
-    protected $headers=[];
-    
-    protected $type='';
-    
-    protected $path='';
-    
-    protected $data=[];
-    
-    protected $timeout=10;
-    
-    public function __construct(string $key='',string $secret='',string $host='https://www.bitmex.com')
-    {
-        $this->key = $key;
-        
+    function __construct(string $key='',string $secret='',string $host='https://www.bitmex.com'){
+        $this->key=$key;
         $this->secret=$secret;
-        
-        //https://testnet.bitmex.com 测试服务器
         $this->host=$host;
     }
     
     /**
-     * 认证
+     * 
      * */
-    protected function auth(){
-        $this->nonce();
-        
-        $this->signature();
-        
-        $this->headers();
-    }
-    
-    /**
-     * 过期时间
-     * */
-    protected function nonce(){
-        $this->nonce = (string) number_format(round(microtime(true) * 100000), 0, '.', '');
-    }
-    
-    /**
-     * 签名
-     * */
-    protected function signature(){
-        $endata=http_build_query($this->data);
-        $this->signature=hash_hmac('sha256', $this->type.$this->path.$this->nonce.$endata, $this->secret);
-    }
-    
-    /**
-     * 默认头部信息
-     * */
-    protected function headers(){
-        $this->headers=[
-            'accept' => 'application/json',
+    private function init(){
+        return [
+            'key'=>$this->key,
+            'secret'=>$this->secret,
+            'host'=>$this->host,
         ];
-        
-        if(!empty($this->key) && !empty($this->secret)) {
-            $this->headers=array_merge($this->headers,[
-                'api-expires'      => $this->nonce,
-                'api-key'=>$this->key,
-                'api-signature' => $this->signature,
-            ]);
-        }
-        
-        if(!empty($this->data)) $this->headers['content-type']='application/x-www-form-urlencoded';
     }
     
     /**
-     * 发送http
+     * Public Announcements List Operations Expand Operations
      * */
-    protected function send(){
-        $client = new \GuzzleHttp\Client();
-        
-        $data=[
-            'headers'=>$this->headers,
-            'timeout'=>$this->timeout
-        ];
-        
-        if(!empty($this->data)) $data['form_params']=$this->data;
-        
-        $response = $client->request($this->type, $this->host.$this->path, $data);
-        
-        return $response->getBody()->getContents();
+    function announcement(){
+        return new Announcement($this->init());
     }
     
-    /*
-     * 执行流程
+    /**
+     * Persistent API Keys for Developers List Operations Expand Operations
      * */
-    protected function exec(){
-        $this->auth();
-        
-        //可以记录日志
-        try {
-            return json_decode($this->send(),true);
-        }catch (RequestException $e){
-            //TODO  该流程可以记录各种日志
-            throw new Exception($e->getMessage());
-        }
+    function apiKey(){
+        return new ApiKey($this->init());
+    }
+    
+    /**
+     * Trollbox Data List Operations Expand Operations
+     * */
+    function chat(){
+        return new Chat($this->init());
+    }
+    
+    /**
+     * Raw Order and Balance Data List Operations Expand Operations
+     * */
+    function execution(){
+        return new Execution($this->init());
+    }
+    
+    /**
+     * Swap Funding History List Operations Expand Operations
+     * */
+    function funding(){
+        return new Funding($this->init());
+    }
+    
+    /**
+     * Account Notifications List Operations Expand Operations
+     * */
+    function globalNotification(){
+        return new GlobalNotification($this->init());
+    }
+    
+    /**
+     * Tradeable Contracts, Indices, and History List Operations Expand Operations
+     * */
+    function instrument(){
+        return new Instrument($this->init());
+    }
+    
+    /**
+     *  Insurance Fund Data List Operations Expand Operations
+     * */
+    function insurance(){
+        return new Insurance($this->init());
+    }
+    
+    /**
+     *  Information on Top Users List Operations Expand Operations
+     * */
+    function leaderboard(){
+        return new Leaderboard($this->init());
+    }
+    
+    /**
+     *Active Liquidations List Operations Expand Operations
+     * */
+    function liquidation(){
+        return new Liquidation($this->init());
+    }
+    
+    /**
+     *Placement, Cancellation, Amending, and History List Operations Expand Operations
+     * */
+    function order(){
+        return new Order($this->init());
+    }
+    
+    /**
+     *Level 2 Book Data List Operations Expand Operations
+     * */
+    function orderBook(){
+        return new OrderBook($this->init());
+    }
+    
+    /**
+     *Summary of Open and Closed Positions List Operations Expand Operations
+     * */
+    function position(){
+        return new Position($this->init());
+    }
+    
+    /**
+     *Best Bid/Offer Snapshots & Historical Bins List Operations Expand Operations
+     * */
+    function quote(){
+        return new Quote($this->init());
+    }
+    
+    /**
+     *Dynamic Schemata for Developers List Operations Expand Operations
+     * */
+    function schema(){
+        return new Schema($this->init());
+    }
+    
+    /**
+     *Historical Settlement Data List Operations Expand Operations
+     * */
+    function settlement(){
+        return new Settlement($this->init());
+    }
+    
+    /**
+     *Exchange Statistics List Operations Expand Operations
+     * */
+    function stats(){
+        return new Stats($this->init());
+    }
+    
+    /**
+     *Individual & Bucketed Trades List Operations Expand Operations
+     * */
+    function trade(){
+        return new Trade($this->init());
+    }
+    
+    /**
+     *Account Operations List Operations Expand Operations
+     * */
+    function user(){
+        return new User($this->init());
+    }
+    
+    /**
+     *User Events for auditing
+     * */
+    function userEvent(){
+        return new UserEvent($this->init());
     }
 }

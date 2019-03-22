@@ -5,15 +5,15 @@
 
 namespace Lin\Bitmex\Api;
 
-use Lin\Bitmex\Bitmex;
+use Lin\Bitmex\Request;
 
-class OrderBook extends Bitmex
+class OrderBook extends Request
 {
     /**
      * 
      * @param array symbol=XBTUSD&depth=25
      * */
-    public function get($data=['symbol'=>'XBTUSD','depth'=>100]){
+    public function get(array $data=['symbol'=>'XBTUSD','depth'=>100]){
         $this->type='GET';
         $this->path='/api/v1/orderBook/L2';
         $this->data=$data;

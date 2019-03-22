@@ -1,9 +1,9 @@
 <?php
 namespace Lin\Bitmex\Api;
 
-use Lin\Bitmex\Bitmex;
+use Lin\Bitmex\Request;
 
-class Position extends Bitmex
+class Position extends Request
 {
     public function get(array $data){
         $this->type='GET';
