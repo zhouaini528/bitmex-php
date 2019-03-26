@@ -12,6 +12,10 @@ class Position extends Request
         
         return $this->exec();
     }
+    
+    public function postIsolate(array $data){
+        
+    }
 
     /**
      * 设置账户杠杆
@@ -30,5 +34,13 @@ class Position extends Request
         $this->data=$data;
 
         return $this->exec();
+    }
+    
+    public function postRiskLimit(array $data){
+        
+    }
+    
+    public function postTransferMargin(array $data){
+        
     }
 }

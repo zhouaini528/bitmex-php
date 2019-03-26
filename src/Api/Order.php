@@ -1,6 +1,9 @@
 <?php
 /**
  * @author lin <465382251@qq.com>
+ * 
+ * Most of them are unfinished and need your help
+ * https://github.com/zhouaini528/bitmex-php.git
  * */
 
 namespace Lin\Bitmex\Api;
@@ -10,15 +13,9 @@ use Lin\Bitmex\Request;
 class Order extends Request
 {
     /**
-     * $data=[
-            'symbol'=>'ADAZ18',
-            
-            //可选参数  具体参考API  https://testnet.bitmex.com/api/explorer/#!/Order/Order_getOrders
-             * 数量
-             * 时间
-        ];
+     * 
      * */
-    public function get($data=[]){
+    public function get(array $data=[]){
         $this->type='GET';
         $this->path='/api/v1/order';
         $this->data=$data;
@@ -52,7 +49,7 @@ class Order extends Request
         return $this->get($data);
     }
     
-    public function put($data){
+    public function put(array $data){
         
     }
     
@@ -60,12 +57,16 @@ class Order extends Request
      * $data=[
             'symbol'=>'XBTUSD',
             'price'=>'10',
-            'side'=>'sell,buy',该参数可以为空。则价格正负代表做多~做空
+            'side'=>'Sell  Buy',
             'orderQty'=>'10',
-            'ordType'=>'Limit',//limit 限价交易
+            'ordType'=>'Limit',
+            
+            'clOrdID'    Optional Client  ID
+            
+            More  https://www.bitmex.com/api/explorer/#!/Order/Order_new
         ];
      * */
-    public function post($data){
+    public function post(array $data){
         $this->type='POST';
         $this->path='/api/v1/order';
         $this->data=$data;
@@ -73,7 +74,10 @@ class Order extends Request
         return $this->exec();
     }
     
-    public function delete($data){
+    /**
+     * 
+     * */
+    public function delete(array $data){
         $this->type='DELETE';
         $this->path='/api/v1/order';
         $this->data=$data;
@@ -81,19 +85,30 @@ class Order extends Request
         return $this->exec();
     }
     
-    public function putBulk($data){
+    /**
+     *
+     * */
+    public function deleteAll(array $data){
+        $this->type='DELETE';
+        $this->path='/api/v1/order/all';
+        $this->data=$data;
+        
+        return $this->exec();
+    }
+    
+    public function putBulk(array $data){
         
     }
     
-    public function postBulk($data){
+    public function postBulk(array $data){
         
     }
     
-    public function postCancelAllAfter($data){
+    public function postCancelAllAfter(array $data){
         
     }
     
-    public function postClosePosition($data){
+    public function postClosePosition(array $data){
         
     }
 }
