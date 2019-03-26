@@ -8,7 +8,9 @@
 
 正式服务器[https://www.bitmex.com](https://www.bitmex.com)
 
-所有的接口方式初始化与bitmex提供的接口方式一样，详细请看src/api
+所有的接口方式初始化与bitmex提供的接口方式一样，详细请看[src/api](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
+
+很多接口还未完善，使用者可以根据我的设计方案继续扩展，欢迎与我一起迭代它。
 
 行情数据[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
