@@ -15,7 +15,7 @@ Many interfaces are not yet complete, and users can continue to extend them base
 Book Data [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //Get market data
-//Market parameters can not key and secret
+//Book data may be key and secret
 try {
     $bitmex=new Bitmex();
     $result=$bitmex->orderBook()->get([
