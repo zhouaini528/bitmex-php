@@ -12,7 +12,7 @@ Many interfaces are not yet complete, and users can continue to extend them base
 
 [中文文档](https://github.com/zhouaini528/bitmex-php/blob/master/README_CN.md)
 
-Book Data[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
+Book Data [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //Get market data
 //Market parameters can not key and secret
@@ -28,7 +28,7 @@ try {
 }
 ```
 
-Order[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/order.php)
+Order [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/order.php)
 ```php
 //Test API address  default  https://www.bitmex.com
 $key='eLB_l505a_cuZL8Cmu5uo7EP';
@@ -75,7 +75,7 @@ try {
 ```
 
 
-Postion[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
+Postion [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //bargaining transaction
 try {
