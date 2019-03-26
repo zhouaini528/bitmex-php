@@ -13,9 +13,8 @@ try {
     print_r($result);
 }catch (\Exception $e){
     print_r($e->getMessage());
-    die('hhh');
+    die();
 }
-
 
 $result=$bitmex->orderBook()->get([
     'symbol'=>'ETHUSD',
