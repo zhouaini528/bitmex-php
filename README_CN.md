@@ -10,7 +10,7 @@
 
 所有的接口方式初始化与bitmex提供的接口方式一样，详细请看src/api
 
-行情数据初始化[More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
+行情数据[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //Get market data
 //Market parameters can not key and secret
@@ -26,40 +26,69 @@ try {
 }
 ```
 
-订单类的初始化
+订单类[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/order.php)
 ```php
-//$host 可以不传入，默认正式服务器访问；
-$order=new \Lin\Bitmex\Api\Order($key, $secret, $host);
-//订单查询
-$rlt=$order->get([
-    'symbol'=>'ADAZ18',
-]);
-print_r($rlt);
+//Test API address  default  https://www.bitmex.com
+$key='eLB_l505a_cuZL8Cmu5uo7EP';
+$secret='wG3ndMquAPl6c-jHUQNhyBQJKGBwdFenIF2QxcgNKE_g8Kz3';
+$host='https://testnet.bitmex.com';
 
-//创建新订单
-$data=[
-    'symbol'=>'ADAZ18',
-    'price'=>'0.00001196',
-    'orderQty'=>'10',
-    'ordType'=>'Limit',
-];
-$rlt=$order->post($data);
-print_r($rlt);
+$bitmex=new Bitmex($key,$secret,$host);
 
-//功能多API请查看API
+//bargaining transaction
+try {
+    $result=$bitmex->order()->post([
+        'symbol'=>'XBTUSD',
+        'price'=>'100',
+        'side'=>'Buy',
+        'orderQty'=>'1',
+        'ordType'=>'Limit',
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+//track the order
+try {
+    $result=$bitmex->order()->getOne([
+        'symbol'=>'XBTUSD',
+        'orderID'=>$result['orderID'],
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
+//cancellation of order
+try {
+    $result=$bitmex->order()->delete([
+        'symbol'=>'XBTUSD',
+        'orderID'=>$result['orderID'],
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
 ```
 
 
-用户类的初始化
+仓位查询[more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
-//$host 可以不传入，默认正式服务器访问；
-$user=new \Lin\Bitmex\Api\User($key, $secret, $host);
-
-//订单查询
-$rlt=$user->get();
-print_r($rlt);
-
-//功能多API请查看API
+//bargaining transaction
+try {
+    $bitmex=new Bitmex($key,$secret,$host);
+    $result=$bitmex->position()->get([
+        'symbol'=>'XBTUSD',
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
 ```
+
+更多用例请查看[more](https://github.com/zhouaini528/bitmex-php/tree/master/tests)
+
+更多API请查看[more](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
 
 
