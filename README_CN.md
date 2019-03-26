@@ -1,6 +1,4 @@
-### 初始化
-
-建议优先用测试服务器
+###建议优先用测试服务器
 
 在线接口测试[https://www.bitmex.com/api/explorer/](https://www.bitmex.com/api/explorer/)
 
