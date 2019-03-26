@@ -10,13 +10,20 @@
 
 所有的接口方式初始化与bitmex提供的接口方式一样，详细请看src/api
 
-行情数据初始化
+行情数据初始化[More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
-//$host 可以不传入，默认正式服务器访问；
-$order=new \Lin\Bitmex\Api\OrderBook();
-$rlt=$order->get();
-print_r($rlt);
-//功能多API请查看API
+//Get market data
+//Market parameters can not key and secret
+try {
+    $bitmex=new Bitmex();
+    $result=$bitmex->orderBook()->get([
+        'symbol'=>'ETHUSD',
+        'depth'=>20
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
 ```
 
 订单类的初始化
