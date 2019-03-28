@@ -50,7 +50,11 @@ class Order extends Request
     }
     
     public function put(array $data){
+        $this->type='PUT';
+        $this->path='/api/v1/order';
+        $this->data=$data;
         
+        return $this->exec();
     }
     
     /**
