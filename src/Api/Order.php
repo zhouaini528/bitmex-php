@@ -101,18 +101,30 @@ class Order extends Request
     }
     
     public function putBulk(array $data){
-        
+        $this->type='PUT';
+        $this->path='';
+        $this->data=$data;
+        return $this->exec();
     }
     
     public function postBulk(array $data){
-        
+        $this->type='POST';
+        $this->path='';
+        $this->data=$data;
+        return $this->exec();
     }
     
     public function postCancelAllAfter(array $data){
-        
+        $this->type='POST';
+        $this->path='';
+        $this->data=$data;
+        return $this->exec();
     }
     
     public function postClosePosition(array $data){
-        
+        $this->type='POST';
+        $this->path='';
+        $this->data=$data;
+        return $this->exec();
     }
 }
