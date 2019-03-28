@@ -1,5 +1,5 @@
 {
-    "name": "lwj/bitmex",
+    "name": "linwj/bitmex",
     "type": "library",
     "description": "Bitmex API Like the official document interface, Support for arbitrary extension.",
     "license": "MIT",
