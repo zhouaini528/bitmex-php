@@ -1,11 +1,11 @@
 {
-    "name": "lin/bitmex",
+    "name": "lwj/bitmex",
     "type": "library",
     "description": "Bitmex API Like the official document interface, Support for arbitrary extension.",
     "license": "MIT",
     "authors": [
         {
-            "name": "lin",
+            "name": "linwenjun",
             "email": "465382251@qq.com"
         }
     ],
