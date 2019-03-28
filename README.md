@@ -62,6 +62,19 @@ try {
     print_r(json_decode($e->getMessage(),true));
 }
 
+//update the order
+try {
+    $result=$bitmex->order()->put([
+        'symbol'=>'XBTUSD',
+        'orderID'=>$result['orderID'],
+        'price'=>'200',
+        'orderQty'=>'2',
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
 //cancellation of order
 try {
     $result=$bitmex->order()->delete([
