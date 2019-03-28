@@ -3,7 +3,7 @@ namespace Lin\Bitmex\Api;
 
 use Lin\Bitmex\Request;
 
-class UserEvent extends Request
+class WebSocket extends Request
 {
 
 }
