@@ -12,6 +12,13 @@ Many interfaces are not yet complete, and users can continue to extend them base
 
 [中文文档](https://github.com/zhouaini528/bitmex-php/blob/master/README_CN.md)
 
+### Other exchanges API
+[Bitmex](https://packagist.org/packages/linwj/bitmex)
+
+[Okex](https://packagist.org/packages/linwj/okex)
+
+[Huobi](https://packagist.org/packages/linwj/huobi)
+
 Book Data [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //Get market data
