@@ -11,11 +11,17 @@
 很多接口还未完善，使用者可以根据我的设计方案继续扩展，欢迎与我一起迭代它。
 
 ### 其他交易所API
-[Bitmex](https://packagist.org/packages/linwj/bitmex)
 
-[Okex](https://packagist.org/packages/linwj/okex)
+[Bitmex](https://github.com/zhouaini528/bitmex-php)
 
-[Huobi](https://packagist.org/packages/linwj/huobi)
+[Okex](https://github.com/zhouaini528/okex-php)
+
+[Huobi](https://github.com/zhouaini528/huobi-php)
+
+#### 安装方式
+```
+composer require "linwj/bitmex dev-master"
+```
 
 行情数据 [more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php

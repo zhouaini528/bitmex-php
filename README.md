@@ -13,11 +13,17 @@ Many interfaces are not yet complete, and users can continue to extend them base
 [中文文档](https://github.com/zhouaini528/bitmex-php/blob/master/README_CN.md)
 
 ### Other exchanges API
-[Bitmex](https://packagist.org/packages/linwj/bitmex)
 
-[Okex](https://packagist.org/packages/linwj/okex)
+[Bitmex](https://github.com/zhouaini528/bitmex-php)
 
-[Huobi](https://packagist.org/packages/linwj/huobi)
+[Okex](https://github.com/zhouaini528/okex-php)
+
+[Huobi](https://github.com/zhouaini528/huobi-php)
+
+#### Installation
+```
+composer require "linwj/bitmex dev-master"
+```
 
 Book Data [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
