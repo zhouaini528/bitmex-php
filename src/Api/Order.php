@@ -13,11 +13,28 @@ use Lin\Bitmex\Request;
 class Order extends Request
 {
     /**
-     * 
+     * Get your orders.
+     * Parameter	  Value	Description	Parameter Type	Data Type
+        symbol		    Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.	query	string
+        		            You can also send a timeframe, e.g. XBU:monthly. Timeframes are daily, weekly, monthly, quarterly, and biquarterly.		
+        filter		        Generic table filter. Send JSON key/value pairs, such as {"key": "value"}. You can key on individual fields, and do more advanced querying on timestamps. See the Timestamp Docs for more details.	query	string
+        columns		Array of column names to fetch. If omitted, will return all columns.	query	string
+        		            Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.		
+        count		    Number of results to fetch.	query	double
+        start		        Starting point for results.	query	double
+        reverse	        If true, will sort results newest first.	query	boolean
+        startTime		Starting date filter for results.	query	date-time
+        endTime		Ending date filter for results.	query	date-time
      * */
     public function get(array $data=[]){
         $this->type='GET';
         $this->path='/api/v1/order';
+        
+        $data['reverse']=$data['reverse'] ?? 'true';
+        $data['symbol']=$data['symbol'] ?? 'XBTUSD';
+        $data['count']=$data['count'] ?? '100';
+        
+        
         $this->data=$data;
         
         return $this->exec();
@@ -41,6 +58,9 @@ class Order extends Request
         return current($this->get($data));
     }
     
+    /**
+     *
+     * */
     public function getAll(array $data){
         if(!isset($data['count'])) $data['count']=100;//默认100条
         

@@ -28,4 +28,15 @@ try {
     print_r(json_decode($e->getMessage(),true));
 }
 
+//Choose leverage for a position
+try {
+    $result=$bitmex->position()->postLeverage([
+        'symbol'=>'XBTUSD',
+        'leverage'=>0
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
 ?>
