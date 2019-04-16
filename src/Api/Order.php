@@ -55,7 +55,10 @@ class Order extends Request
             'filter'=>json_encode($data)
         ];
         
-        return current($this->get($data));
+        $tmp=current($this->get($data));
+        if(empty($tmp)) return [];
+        
+        return $tmp;
     }
     
     /**
