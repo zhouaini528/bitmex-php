@@ -11,6 +11,6 @@ class Liquidation extends Request
         $this->path='/api/v1/liquidation';
         $this->data=$data;
         
-        return $this-exec();
+        return $this->exec();
     }
 }
