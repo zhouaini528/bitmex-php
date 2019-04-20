@@ -22,6 +22,8 @@ Many interfaces are not yet complete, and users can continue to extend them base
 
 [Binance](https://github.com/zhouaini528/binance-php)
 
+[Exchanges](https://github.com/zhouaini528/exchanges-php) All integration
+
 #### Installation
 ```
 composer require "linwj/bitmex dev-master"
