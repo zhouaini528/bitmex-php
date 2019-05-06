@@ -5,5 +5,19 @@ use Lin\Bitmex\Request;
 
 class Execution extends Request
 {
-
+    public function get(array $data=[]){
+        $this->type='GET';
+        $this->path='/execution';
+        $this->data=$data;
+        
+        return $this->exec();
+    }
+    
+    public function getTradeHistory(array $data=[]){
+        $this->type='GET';
+        $this->path='/execution/tradeHistory';
+        $this->data=$data;
+        
+        return $this->exec();
+    }
 }

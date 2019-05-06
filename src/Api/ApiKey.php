@@ -12,15 +12,31 @@ class ApiKey extends Request
         return $this->exec();
     }
     
-    public function post(){
+    public function post(array $data){
+        $this->type='POST';
+        $this->path='/api/v1/apiKey';
+        $this->data=$data;
         
+        return $this->exec();
     }
     
-    public function postDisable(){
+    public function postDisable(array $data){
+        $this->type='POST';
+        $this->path='/apiKey/disable';
+        $this->data=$data;
         
+        return $this->exec();
     }
     
-    public function delete($data){
+    public function postEnable(array $data){
+        $this->type='POST';
+        $this->path='/apiKey/enable';
+        $this->data=$data;
+        
+        return $this->exec();
+    }
+    
+    public function delete(array $data){
         $this->type='DELETE';
         $this->path='/api/v1/apiKey';
         $this->data=$data;
