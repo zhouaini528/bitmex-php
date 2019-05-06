@@ -7,7 +7,7 @@ class Insurance extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/insurance';
+        $this->path='/api/v1/insurance';
         $this->data=$data;
         
         return $this->exec();

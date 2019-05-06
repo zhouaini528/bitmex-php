@@ -7,7 +7,7 @@ class Trade extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/trade';
+        $this->path='/api/v1/trade';
         $this->data=$data;
         
         return $this->exec();
@@ -15,7 +15,7 @@ class Trade extends Request
     
     public function getBucketed(array $data=[]){
         $this->type='GET';
-        $this->path='/trade/bucketed';
+        $this->path='/api/v1/trade/bucketed';
         $this->data=$data;
         
         return $this->exec();

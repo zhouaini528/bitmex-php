@@ -14,7 +14,7 @@ class User extends Request
     
     public function getAffiliateStatus(array $data=[]){
         $this->type='GET';
-        $this->path='/user/affiliateStatus';
+        $this->path='/api/v1/user/affiliateStatus';
         $this->data=$data;
         
         return $this->exec();
@@ -22,7 +22,7 @@ class User extends Request
     
     public function postCancelWithdrawal(array $data){
         $this->type='POST';
-        $this->path='/user/cancelWithdrawal';
+        $this->path='/api/v1/user/cancelWithdrawal';
         $this->data=$data;
         
         return $this->exec();
@@ -30,7 +30,7 @@ class User extends Request
     
     public function getCheckReferralCode(array $data){
         $this->type='GET';
-        $this->path='/user/checkReferralCode';
+        $this->path='/api/v1/user/checkReferralCode';
         $this->data=$data;
         
         return $this->exec();
@@ -38,7 +38,7 @@ class User extends Request
     
     public function getCommission(array $data){
         $this->type='GET';
-        $this->path='/user/commission';
+        $this->path='/api/v1/user/commission';
         $this->data=$data;
         
         return $this->exec();
@@ -46,7 +46,7 @@ class User extends Request
     
     public function postCommunicationToken(array $data){
         $this->type='POST';
-        $this->path='/user/communicationToken';
+        $this->path='/api/v1/user/communicationToken';
         $this->data=$data;
         
         return $this->exec();
@@ -54,7 +54,7 @@ class User extends Request
     
     public function postConfirmEmail(array $data){
         $this->type='POST';
-        $this->path='/user/confirmEmail';
+        $this->path='/api/v1/user/confirmEmail';
         $this->data=$data;
         
         return $this->exec();
@@ -62,7 +62,7 @@ class User extends Request
     
     public function postConfirmWithdrawal(array $data){
         $this->type='POST';
-        $this->path='/user/confirmWithdrawal';
+        $this->path='/api/v1/user/confirmWithdrawal';
         $this->data=$data;
         
         return $this->exec();
@@ -70,7 +70,7 @@ class User extends Request
     
     public function getDepositAddress(array $data=[]){
         $this->type='GET';
-        $this->path='/user/depositAddress';
+        $this->path='/api/v1/user/depositAddress';
         $this->data=$data;
         
         return $this->exec();
@@ -78,7 +78,7 @@ class User extends Request
     
     public function getExecutionHistory(array $data=[]){
         $this->type='GET';
-        $this->path='/user/executionHistory';
+        $this->path='/api/v1/user/executionHistory';
         $this->data=$data;
         
         return $this->exec();
@@ -86,7 +86,7 @@ class User extends Request
     
     public function postLogout(array $data=[]){
         $this->type='POST';
-        $this->path='/user/logout';
+        $this->path='/api/v1/user/logout';
         $this->data=$data;
         
         return $this->exec();
@@ -106,7 +106,7 @@ class User extends Request
     
     public function getMinWithdrawalFee(array $data=[]){
         $this->type='GET';
-        $this->path='/user/minWithdrawalFee';
+        $this->path='/api/v1/user/minWithdrawalFee';
         $this->data=$data;
         
         return $this->exec();
@@ -115,7 +115,7 @@ class User extends Request
     public function postPreferences(array $data)
     {
         $this->type='POST';
-        $this->path='/user/preferences';
+        $this->path='/api/v1/user/preferences';
         $this->data=$data;
         
         return $this->exec();
@@ -124,7 +124,7 @@ class User extends Request
     public function postRequestWithdrawal(array $data)
     {
         $this->type='POST';
-        $this->path='/user/requestWithdrawal';
+        $this->path='/api/v1/user/requestWithdrawal';
         $this->data=$data;
         
         return $this->exec();
@@ -144,7 +144,7 @@ class User extends Request
     
     public function getWalletHistory(array $data=[]){
         $this->type='GET';
-        $this->path='/user/walletHistory';
+        $this->path='/api/v1/user/walletHistory';
         $this->data=$data;
         
         return $this->exec();
@@ -152,7 +152,7 @@ class User extends Request
     
     public function getWalletSummary(array $data=[]){
         $this->type='GET';
-        $this->path='/user/walletSummary';
+        $this->path='/api/v1/user/walletSummary';
         $this->data=$data;
         
         return $this->exec();

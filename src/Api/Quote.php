@@ -7,7 +7,7 @@ class Quote extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/quote';
+        $this->path='/api/v1/quote';
         $this->data=$data;
         
         return $this->exec();
@@ -15,7 +15,7 @@ class Quote extends Request
     
     public function getBucketed(array $data=[]){
         $this->type='GET';
-        $this->path='/quote/bucketed';
+        $this->path='/api/v1/quote/bucketed';
         $this->data=$data;
         
         return $this->exec();

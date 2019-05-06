@@ -7,7 +7,7 @@ class GlobalNotification extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/globalNotification';
+        $this->path='/api/v1/globalNotification';
         $this->data=$data;
         
         return $this->exec();

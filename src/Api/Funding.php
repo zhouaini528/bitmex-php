@@ -7,7 +7,7 @@ class Funding extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/funding';
+        $this->path='/api/v1/funding';
         $this->data=$data;
         
         return $this->exec();

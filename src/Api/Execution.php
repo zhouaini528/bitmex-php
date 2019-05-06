@@ -7,7 +7,7 @@ class Execution extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/execution';
+        $this->path='/api/v1/execution';
         $this->data=$data;
         
         return $this->exec();
@@ -15,7 +15,7 @@ class Execution extends Request
     
     public function getTradeHistory(array $data=[]){
         $this->type='GET';
-        $this->path='/execution/tradeHistory';
+        $this->path='/api/v1/execution/tradeHistory';
         $this->data=$data;
         
         return $this->exec();

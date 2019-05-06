@@ -7,7 +7,7 @@ class Leaderboard extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/leaderboard';
+        $this->path='/api/v1/leaderboard';
         $this->data=$data;
         
         return $this->exec();
@@ -15,7 +15,7 @@ class Leaderboard extends Request
     
     public function getName(array $data=[]){
         $this->type='GET';
-        $this->path='/leaderboard/name';
+        $this->path='/api/v1/leaderboard/name';
         $this->data=$data;
         
         return $this->exec();

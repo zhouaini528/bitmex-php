@@ -7,7 +7,7 @@ class Instrument extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/instrument';
+        $this->path='/api/v1/instrument';
         $this->data=$data;
         
         return $this->exec();
@@ -15,7 +15,7 @@ class Instrument extends Request
     
     public function getActive(array $data=[]){
         $this->type='GET';
-        $this->path='/instrument/active';
+        $this->path='/api/v1/instrument/active';
         $this->data=$data;
         
         return $this->exec();
@@ -23,7 +23,7 @@ class Instrument extends Request
     
     public function getActiveAndIndices(array $data=[]){
         $this->type='GET';
-        $this->path='/instrument/activeAndIndices';
+        $this->path='/api/v1/instrument/activeAndIndices';
         $this->data=$data;
         
         return $this->exec();
@@ -31,7 +31,7 @@ class Instrument extends Request
     
     public function getActiveIntervals(array $data=[]){
         $this->type='GET';
-        $this->path='/instrument/activeIntervals';
+        $this->path='/api/v1/instrument/activeIntervals';
         $this->data=$data;
         
         return $this->exec();
@@ -39,7 +39,7 @@ class Instrument extends Request
     
     public function getCompositeIndex(array $data=[]){
         $this->type='GET';
-        $this->path='/instrument/compositeIndex';
+        $this->path='/api/v1/instrument/compositeIndex';
         $this->data=$data;
         
         return $this->exec();
@@ -47,7 +47,7 @@ class Instrument extends Request
     
     public function getIndices(array $data=[]){
         $this->type='GET';
-        $this->path='/instrument/indices';
+        $this->path='/api/v1/instrument/indices';
         $this->data=$data;
         
         return $this->exec();

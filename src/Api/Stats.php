@@ -7,7 +7,7 @@ class Stats extends Request
 {
     public function get(array $data=[]){
         $this->type='GET';
-        $this->path='/stats';
+        $this->path='/api/v1/stats';
         $this->data=$data;
         
         return $this->exec();
@@ -15,7 +15,7 @@ class Stats extends Request
     
     public function getHistory(array $data=[]){
         $this->type='GET';
-        $this->path='/stats/history';
+        $this->path='/api/v1/stats/history';
         $this->data=$data;
         
         return $this->exec();
@@ -23,7 +23,7 @@ class Stats extends Request
     
     public function getHistoryUSD(array $data=[]){
         $this->type='GET';
-        $this->path='/stats/historyUSD';
+        $this->path='/api/v1/stats/historyUSD';
         $this->data=$data;
         
         return $this->exec();

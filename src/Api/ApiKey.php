@@ -22,7 +22,7 @@ class ApiKey extends Request
     
     public function postDisable(array $data){
         $this->type='POST';
-        $this->path='/apiKey/disable';
+        $this->path='/api/v1/apiKey/disable';
         $this->data=$data;
         
         return $this->exec();
@@ -30,7 +30,7 @@ class ApiKey extends Request
     
     public function postEnable(array $data){
         $this->type='POST';
-        $this->path='/apiKey/enable';
+        $this->path='/api/v1/apiKey/enable';
         $this->data=$data;
         
         return $this->exec();
