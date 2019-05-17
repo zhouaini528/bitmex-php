@@ -29,6 +29,20 @@ Many interfaces are not yet complete, and users can continue to extend them base
 composer require "linwj/bitmex dev-master"
 ```
 
+Local development sets the proxy [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
+```php
+$bitmex=new Bitmex();
+
+//If you are developing locally and need an agent, you can set this
+$bitmex->setProxy();
+
+//More flexible Settings
+$bitmex->setProxy([
+    'http'  => 'http://127.0.0.1:12333',
+    'https' => 'http://127.0.0.1:12333',
+]);
+```
+
 Book Data [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //Get market data
