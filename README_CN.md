@@ -27,6 +27,20 @@
 composer require "linwj/bitmex dev-master"
 ```
 
+支持本地开发代理 [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
+```php
+$bitmex=new Bitmex();
+
+//If you are developing locally and need an agent, you can set this
+$bitmex->setProxy();
+
+//More flexible Settings
+$bitmex->setProxy([
+    'http'  => 'http://127.0.0.1:12333',
+    'https' => 'http://127.0.0.1:12333',
+]);
+```
+
 行情数据 [more](https://github.com/zhouaini528/bitmex-php/blob/master/tests/position.php)
 ```php
 //Get market data
