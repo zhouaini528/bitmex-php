@@ -20,8 +20,11 @@ $bitmex=new Bitmex($key,$secret,$host);
 
 //bargaining transaction
 try {
+    //Default return all
     $result=$bitmex->position()->get([
-        'symbol'=>'XBTUSD',
+        //'filter'=>['symbol'=>'XBTUSD'],
+        //'columns'=>'markPrice',
+        //'count'=>1,
     ]);
     print_r($result);
 }catch (\Exception $e){
