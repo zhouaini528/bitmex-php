@@ -8,9 +8,6 @@ class Position extends Request
     public function get(array $data=[]){
         $this->type='GET';
         $this->path='/api/v1/position';
-        
-        if(isset($data['filter'])) $data['filter']=json_encode($data['filter']);
-        
         $this->data=$data;
         
         return $this->exec();

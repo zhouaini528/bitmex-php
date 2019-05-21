@@ -125,7 +125,7 @@ Postion [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/posit
 try {
     //Default return all
     $result=$bitmex->position()->get([
-        //'filter'=>['symbol'=>'XBTUSD'],
+        //'filter'=>'{"symbol": "XBTUSD"}',
         //'columns'=>'markPrice',
         //'count'=>1,
     ]);

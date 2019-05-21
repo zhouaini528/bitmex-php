@@ -22,7 +22,7 @@ $bitmex=new Bitmex($key,$secret,$host);
 try {
     //Default return all
     $result=$bitmex->position()->get([
-        //'filter'=>['symbol'=>'XBTUSD'],
+        //'filter'=>'{"symbol": "XBTUSD"}',
         //'columns'=>'markPrice',
         //'count'=>1,
     ]);
