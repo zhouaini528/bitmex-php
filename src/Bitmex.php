@@ -33,6 +33,7 @@ class Bitmex
     protected $host;
     
     protected $proxy=false;
+    protected $timeout=60;
     
     function __construct(string $key='',string $secret='',string $host='https://www.bitmex.com'){
         $this->key=$key;
@@ -48,6 +49,7 @@ class Bitmex
             'key'=>$this->key,
             'secret'=>$this->secret,
             'host'=>$this->host,
+            'timeout'=>$this->timeout,
         ];
     }
     
@@ -66,6 +68,13 @@ class Bitmex
      * */
     function setProxy($proxy=true){
         $this->proxy=$proxy;
+    }
+    
+    /**
+     * Set the request timeout to 60 seconds by default
+     * */
+    function setTimeOut($timeout=60){
+        $this->timeout=$timeout;
     }
     
     /**

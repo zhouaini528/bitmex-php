@@ -18,6 +18,9 @@ $host='https://testnet.bitmex.com';
 
 $bitmex=new Bitmex($key,$secret,$host);
 
+//Set the request timeout to 60 seconds by default
+//$bitmex->setTimeOut(10);
+
 //bargaining transaction
 try {
     $result=$bitmex->order()->post([
