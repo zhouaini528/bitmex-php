@@ -32,8 +32,7 @@ class Bitmex
     protected $secret;
     protected $host;
     
-    protected $proxy=false;
-    protected $timeout=60;
+    protected $options=[];
     
     function __construct(string $key='',string $secret='',string $host='https://www.bitmex.com'){
         $this->key=$key;
@@ -49,211 +48,155 @@ class Bitmex
             'key'=>$this->key,
             'secret'=>$this->secret,
             'host'=>$this->host,
-            'timeout'=>$this->timeout,
+            
+            'options'=>$this->options,
         ];
     }
     
     /**
-     * Local development sets the proxy
-     * @param bool|array
-     * $proxy=false Default
-     * $proxy=true  Local proxy http://127.0.0.1:12333
      * 
-     * Manual proxy
-     * $proxy=[
-        'http'  => 'http://127.0.0.1:12333',
-        'https' => 'http://127.0.0.1:12333',
-        'no'    =>  ['.cn']
-     * ]
      * */
-    function setProxy($proxy=true){
-        $this->proxy=$proxy;
-    }
-    
-    /**
-     * Set the request timeout to 60 seconds by default
-     * */
-    function setTimeOut($timeout=60){
-        $this->timeout=$timeout;
+    function setOptions(array $options=[]){
+        $this->options=$options;
     }
     
     /**
      * Public Announcements List Operations Expand Operations
      * */
     function announcement(){
-        $announcement=new Announcement($this->init());
-        $announcement->proxy($this->proxy);
-        return $announcement;
+        return new Announcement($this->init());
     }
     
     /**
      * Persistent API Keys for Developers List Operations Expand Operations
      * */
     function apiKey(){
-        $api_key= new ApiKey($this->init());
-        $api_key->proxy($this->proxy);
-        return $api_key;
+        return new ApiKey($this->init());
     }
     
     /**
      * Trollbox Data List Operations Expand Operations
      * */
     function chat(){
-        $chat= new Chat($this->init());
-        $chat->proxy($this->proxy);
-        return $chat;
+        return new Chat($this->init());
     }
     
     /**
      * Raw Order and Balance Data List Operations Expand Operations
      * */
     function execution(){
-        $execution= new Execution($this->init());
-        $execution->proxy($this->proxy);
-        return $execution;
+        return new Execution($this->init());
     }
     
     /**
      * Swap Funding History List Operations Expand Operations
      * */
     function funding(){
-        $funding= new Funding($this->init());
-        $funding->proxy($this->proxy);
-        return $funding;
+        return new Funding($this->init());
     }
     
     /**
      * Account Notifications List Operations Expand Operations
      * */
     function globalNotification(){
-        $global_notification= new GlobalNotification($this->init());
-        $global_notification->proxy($this->proxy);
-        return $global_notification;
+        return new GlobalNotification($this->init());
     }
     
     /**
      * Tradeable Contracts, Indices, and History List Operations Expand Operations
      * */
     function instrument(){
-        $instrument= new Instrument($this->init());
-        $instrument->proxy($this->proxy);
-        return $instrument;
+        return new Instrument($this->init());
     }
     
     /**
      *  Insurance Fund Data List Operations Expand Operations
      * */
     function insurance(){
-        $insurance= new Insurance($this->init());
-        $insurance->proxy($this->proxy);
-        return $insurance;
+        return new Insurance($this->init());
     }
     
     /**
      *  Information on Top Users List Operations Expand Operations
      * */
     function leaderboard(){
-        $leaderboard= new Leaderboard($this->init());
-        $leaderboard->proxy($this->proxy);
-        return $leaderboard;
+        return new Leaderboard($this->init());
     }
     
     /**
      *Active Liquidations List Operations Expand Operations
      * */
     function liquidation(){
-        $liquidation= new Liquidation($this->init());
-        $liquidation->proxy($this->proxy);
-        return $liquidation;
+        return new Liquidation($this->init());
     }
     
     /**
      *Placement, Cancellation, Amending, and History List Operations Expand Operations
      * */
     function order(){
-        $order= new Order($this->init());
-        $order->proxy($this->proxy);
-        return $order;
+        return new Order($this->init());
     }
     
     /**
      *Level 2 Book Data List Operations Expand Operations
      * */
     function orderBook(){
-        $order_book =new OrderBook($this->init());
-        $order_book->proxy($this->proxy);
-        return $order_book;
+        return new OrderBook($this->init());
     }
     
     /**
      *Summary of Open and Closed Positions List Operations Expand Operations
      * */
     function position(){
-        $position= new Position($this->init());
-        $position->proxy($this->proxy);
-        return $position;
+        return new Position($this->init());
     }
     
     /**
      *Best Bid/Offer Snapshots & Historical Bins List Operations Expand Operations
      * */
     function quote(){
-        $quote= new Quote($this->init());
-        $quote->proxy($this->proxy);
-        return $quote;
+        return new Quote($this->init());
     }
     
     /**
      *Dynamic Schemata for Developers List Operations Expand Operations
      * */
     function schema(){
-        $schema= new Schema($this->init());
-        $schema->proxy($this->proxy);
-        return $schema;
+        return new Schema($this->init());
     }
     
     /**
      *Historical Settlement Data List Operations Expand Operations
      * */
     function settlement(){
-        $settlement= new Settlement($this->init());
-        $settlement->proxy($this->proxy);
-        return $settlement;
+        return new Settlement($this->init());
     }
     
     /**
      *Exchange Statistics List Operations Expand Operations
      * */
     function stats(){
-        $stats= new Stats($this->init());
-        $stats->proxy($this->proxy);
-        return $stats;
+        return new Stats($this->init());
     }
     
     /**
      *Individual & Bucketed Trades List Operations Expand Operations
      * */
     function trade(){
-        $trade= new Trade($this->init());
-        $trade->proxy($this->proxy);
-        return $trade;
+        return new Trade($this->init());
     }
     
     /**
      *Account Operations List Operations Expand Operations
      * */
     function user(){
-        $user= new User($this->init());
-        $user->proxy($this->proxy);
-        return $user;
+        return new User($this->init());
     }
     
     /**
      *User Events for auditing
      * */
     function userEvent(){
-        $user_event =new UserEvent($this->init());
-        $user_event->proxy($this->proxy);
-        return $user_event;
+        return new UserEvent($this->init());
     }
 }
