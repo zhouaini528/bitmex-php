@@ -29,7 +29,7 @@ Many interfaces are not yet complete, and users can continue to extend them base
 composer require "linwj/bitmex dev-master"
 ```
 
-Local development sets the proxy [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
+Support for more request Settings [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
 ```php
 $bitmex=new Bitmex();
 
