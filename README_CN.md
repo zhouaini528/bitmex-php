@@ -29,7 +29,7 @@
 composer require "linwj/bitmex dev-master"
 ```
 
-支持本地开发代理 [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
+支持更多的请求设置 [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
 ```php
 $bitmex=new Bitmex();
 
