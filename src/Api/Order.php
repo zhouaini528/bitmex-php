@@ -9,6 +9,7 @@
 namespace Lin\Bitmex\Api;
 
 use Lin\Bitmex\Request;
+use Lin\Bitmex\Exceptions\Exception;
 
 class Order extends Request
 {
@@ -43,8 +44,9 @@ class Order extends Request
     /**
      * 
      * */
-    public function getOne(array $data){
-        if(!isset($data['orderID']) && !isset($data['clOrdID']) ) return [];
+    public function getOne(array $data=[]){
+        if(!isset($data['orderID']) && !isset($data['clOrdID'])) throw new Exception('Order does not exist');
+        
         $symbol=$data['symbol'];
         unset($data['symbol']);
         
@@ -56,7 +58,7 @@ class Order extends Request
         ];
         
         $tmp=current($this->get($data));
-        if(empty($tmp)) return [];
+        if(empty($tmp)) throw new Exception('Order does not exist');
         
         return $tmp;
     }

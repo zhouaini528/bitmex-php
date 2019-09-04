@@ -20,6 +20,7 @@ if(empty($action)) $action=intval($argv[1]);//cli pattern
 
 $bitmex=new Bitmex($key,$secret,$host);
 
+//You can set special needs
 $bitmex->setOptions([
     //Set the request timeout to 60 seconds by default
     'timeout'=>10,
