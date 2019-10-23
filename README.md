@@ -28,7 +28,7 @@ Many interfaces are not yet complete, and users can continue to extend them base
 
 #### Installation
 ```
-composer require "linwj/bitmex dev-master"
+composer require linwj/bitmex
 ```
 
 Support for more request Settings [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)

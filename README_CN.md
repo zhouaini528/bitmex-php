@@ -26,7 +26,7 @@
 
 #### 安装方式
 ```
-composer require "linwj/bitmex dev-master"
+composer require linwj/bitmex
 ```
 
 支持更多的请求设置 [More](https://github.com/zhouaini528/bitmex-php/blob/master/tests/proxy.php#L24)
