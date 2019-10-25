@@ -15,7 +15,7 @@ class Position extends Request
     
     public function postIsolate(array $data){
         $this->type='POST';
-        $this->path='';
+        $this->path='/api/v1/position/isolate';
         $this->data=$data;
         return $this->exec();
     }
@@ -41,14 +41,14 @@ class Position extends Request
     
     public function postRiskLimit(array $data){
         $this->type='POST';
-        $this->path='';
+        $this->path='/api/v1/position/leverage';
         $this->data=$data;
         return $this->exec();
     }
     
     public function postTransferMargin(array $data){
         $this->type='POST';
-        $this->path='';
+        $this->path='/api/v1/position/transferMargin';
         $this->data=$data;
         return $this->exec();
     }

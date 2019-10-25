@@ -18,6 +18,17 @@ $host='https://testnet.bitmex.com';
 
 $bitmex=new Bitmex($key,$secret,$host);
 
+
+try {
+    $result=$bitmex->position()->postIsolate([
+        'symbol'=>'XBTUSD',
+        'enabled'=>'false',
+    ]);
+    print_r($result);
+}catch (\Exception $e){
+    print_r(json_decode($e->getMessage(),true));
+}
+
 //bargaining transaction
 try {
     //Default return all
