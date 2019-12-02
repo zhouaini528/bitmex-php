@@ -8,7 +8,7 @@
 
 所有的接口方式初始化与bitmex提供的接口方式一样，详细请看[src/api](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
 
-很多接口还未完善，使用者可以根据我的设计方案继续扩展，欢迎与我一起迭代它。
+大部分的接口已经完成，使用者可以根据我的设计方案继续扩展，欢迎与我一起迭代它。
 
 ### 其他交易所API
 
