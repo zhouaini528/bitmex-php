@@ -24,7 +24,7 @@ $bitmex->setOptions([
     'timeout'=>10,
     
     //If you are developing locally and need an agent, you can set this
-    'proxy'=>true,
+    //'proxy'=>true,
     //More flexible Settings
     /* 'proxy'=>[
      'http'  => 'http://127.0.0.1:12333',
@@ -86,11 +86,11 @@ try {
 
 
 //Get your orders
-try {
+/* try {
     $result=$bitmex->order()->get();
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
-}
+} */
 
 ?>
