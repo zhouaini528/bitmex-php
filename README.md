@@ -6,7 +6,7 @@ Address of the test [https://testnet.bitmex.com](https://testnet.bitmex.com)
 
 The official address [https://www.bitmex.com](https://www.bitmex.com)
 
-All interface methods are initialized the same as those provided by bitmex. See details [src/api](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
+All interface methods are initialized the same as those provided by Bitmex. See details [src/api](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
 
 Most of the interface is now complete, and the user can continue to extend it based on my design, working with me to improve it.
 
@@ -33,6 +33,8 @@ Most of the interface is now complete, and the user can continue to extend it ba
 [ZB](https://github.com/zhouaini528/zb-php)
 
 [Bitfinex](https://github.com/zhouaini528/zb-php)
+
+[Bittrex](https://github.com/zhouaini528/bittrex-php)
 
 #### Installation
 ```
