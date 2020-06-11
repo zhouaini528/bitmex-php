@@ -56,14 +56,15 @@ class Request
     }
     
     /**
-     * 过期时间
+     * 
      * */
     protected function nonce(){
-        $this->nonce = (string) number_format(round(microtime(true) * 100000), 0, '.', '');
+        //Time delay 30 seconds
+        $this->nonce=time()+30;
     }
     
     /**
-     * 签名
+     * 
      * */
     protected function signature(){
         $endata=http_build_query($this->data);
@@ -71,7 +72,7 @@ class Request
     }
     
     /**
-     * 默认头部信息
+     * 
      * */
     protected function headers(){
         $this->headers=[
@@ -90,12 +91,12 @@ class Request
     }
     
     /**
-     * 请求设置
+     * 
      * */
     protected function options(){
         $this->options=array_merge([
             'headers'=>$this->headers,
-            //'verify'=>false   //关闭证书认证
+            //'verify'=>false
         ],$this->options);
         
         $this->options['timeout'] = $this->options['timeout'] ?? 60;
@@ -110,7 +111,7 @@ class Request
     }
     
     /**
-     * 发送http
+     * 
      * */
     protected function send(){
         $client = new \GuzzleHttp\Client();
@@ -123,12 +124,11 @@ class Request
     }
     
     /*
-     * 执行流程
+     * 
      * */
     protected function exec(){
         $this->auth();
         
-        //可以记录日志
         try {
             return json_decode($this->send(),true);
         }catch (RequestException $e){
@@ -148,7 +148,6 @@ class Request
             
             $temp['_httpcode']=$e->getCode();
             
-            //TODO  该流程可以记录各种日志
             throw new Exception(json_encode($temp));
         }
     }
