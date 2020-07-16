@@ -10,6 +10,8 @@
 
 大部分的接口已经完成，使用者可以根据我的设计方案继续扩展，欢迎与我一起迭代它。
 
+[English Document](https://github.com/zhouaini528/bitmex-php/blob/master/README.md)
+
 ### 其他交易所API
 
 [Exchanges](https://github.com/zhouaini528/exchanges-php) 它包含以下所有交易所，强烈推荐使用该SDK。
