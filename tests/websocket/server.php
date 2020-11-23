@@ -13,9 +13,9 @@ use \Lin\Bitmex\BitmexWebSocket;
 
 require __DIR__ .'../../../vendor/autoload.php';
 
-$Bitmex=new BitmexWebSocket();
+$bitmex=new BitmexWebSocket();
 
-$Bitmex->config([
+$bitmex->config([
     //Do you want to enable local logging,default false
     'log'=>true,
     //Or set the log name
@@ -28,12 +28,12 @@ $Bitmex->config([
     //'data_time'=>0.5,
 
     //Heartbeat time,default 30 seconds
-    'ping_time'=>10,
+    'ping_time'=>30,
 
     //baseurl host
     //'baseurl'=>'ws://www.bitmex.com/realtime',//default
     //'baseurl'=>'ws://testnet.bitmex.com/realtime',//test
 ]);
 
-$Bitmex->start();
+$bitmex->start();
 

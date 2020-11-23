@@ -8,6 +8,8 @@ The official address [https://www.bitmex.com](https://www.bitmex.com)
 
 All interface methods are initialized the same as those provided by Bitmex. See details [src/api](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
 
+Support [Websocket](https://github.com/zhouaini528/bitmex-php/blob/master/README.md#Websocket)
+
 Most of the interface is now complete, and the user can continue to extend it based on my design, working with me to improve it.
 
 [中文文档](https://github.com/zhouaini528/bitmex-php/blob/master/README_CN.md)
@@ -16,13 +18,13 @@ Most of the interface is now complete, and the user can continue to extend it ba
 
 [Exchanges](https://github.com/zhouaini528/exchanges-php) It includes all of the following exchanges and is highly recommended.
 
-[Bitmex](https://github.com/zhouaini528/bitmex-php)
+[Bitmex](https://github.com/zhouaini528/bitmex-php) Support [Websocket](https://github.com/zhouaini528/bitmex-php/blob/master/README.md#Websocket)
 
-[Okex](https://github.com/zhouaini528/okex-php)
+[Okex](https://github.com/zhouaini528/okex-php) Support [Websocket](https://github.com/zhouaini528/okex-php/blob/master/README.md#Websocket)
 
-[Huobi](https://github.com/zhouaini528/huobi-php)
+[Huobi](https://github.com/zhouaini528/huobi-php) Support [Websocket](https://github.com/zhouaini528/huobi-php/blob/master/README.md#Websocket)
 
-[Binance](https://github.com/zhouaini528/binance-php)
+[Binance](https://github.com/zhouaini528/binance-php) Support [Websocket](https://github.com/zhouaini528/binance-php/blob/master/README.md#Websocket)
 
 [Kucoin](https://github.com/zhouaini528/Kucoin-php)
 
@@ -164,5 +166,230 @@ try {
 [More Test](https://github.com/zhouaini528/bitmex-php/tree/master/tests)
 
 [More API](https://github.com/zhouaini528/bitmex-php/tree/master/src/Api)
+
+### Websocket
+
+Websocket has two services, server and client. The server is responsible for dealing with the new connection of the exchange, data receiving, authentication and login, etc. Client is responsible for obtaining and processing data.Support 'Spot' and 'Futures' and 'Coin Margined' and 'Swap USDT Margined' and 'Swap Option'
+#### Spot Websocket Demo
+
+Server initialization must be started in cli mode.
+```php
+use \Lin\Bitmex\BitmexWebSocket;
+require __DIR__ .'./vendor/autoload.php';
+
+$bitmex=new BitmexWebSocket();
+
+$bitmex->config([
+    //Do you want to enable local logging,default false
+    //'log'=>true,
+    //Or set the log name
+    'log'=>['filename'=>'bitmex'],
+
+    //Daemons address and port,default 0.0.0.0:2211
+    //'global'=>'127.0.0.1:2211',
+
+    //Channel subscription monitoring time,2 seconds
+    //'listen_time'=>2,
+
+    //Channel data update time,default 0.5 seconds
+    //'data_time'=>0.5,
+
+    //Heartbeat time,default 30 seconds
+    //'ping_time'=>30,
+
+    //baseurl host
+    //'baseurl'=>'ws://www.bitmex.com/realtime',//default
+    //'baseurl'=>'ws://testnet.bitmex.com/realtime',//test
+]);
+
+$bitmex->start();
+```
+
+If you want to test, you can "php server.php start" immediately outputs the log at the terminal.
+
+If you want to deploy, you can "php server.php start -d" enables resident process mode, and enables "log=>true" to view logs.
+
+[More Test](https://github.com/zhouaini528/bitmex-php/tree/master/tests/websocket)
+
+Client side initialization.
+```php
+$bitmex=new BitmexWebSocket();
+
+$bitmex->config([
+    //Do you want to enable local logging,default false
+    //'log'=>true,
+    //Or set the log name
+    'log'=>['filename'=>'bitmex'],
+
+    //Daemons address and port,default 0.0.0.0:2211
+    //'global'=>'127.0.0.1:2211',
+
+    //Channel subscription monitoring time,2 seconds
+    //'listen_time'=>2,
+
+    //Channel data update time,default 0.5 seconds
+    //'data_time'=>0.5,
+
+    //Heartbeat time,default 30 seconds
+    //'ping_time'=>30,
+
+    //baseurl host
+    //'baseurl'=>'ws://www.bitmex.com/realtime',//default
+    //'baseurl'=>'ws://testnet.bitmex.com/realtime',//test
+]);
+```
+
+Subscribe
+```php
+//You can only subscribe to public channels
+$bitmex->subscribe([
+    //public
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+]);
+
+//You can also subscribe to both private and public channels.If keysecret() is set, all private channels will be subscribed by default
+$bitmex->keysecret([
+    'key'=>'xxxxxxxxx',
+    'secret'=>'xxxxxxxxx',
+]);
+$bitmex->subscribe([
+    //public
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+
+    //private
+    "affiliate",
+    "execution",
+    "order",
+    "margin",
+    "position",
+    "privateNotifications",
+    "transact",
+    "wallet"
+]);
+```
+
+Unsubscribe
+```php
+//Unsubscribe from public channels
+$bitmex->unsubscribe([
+    //public
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+]);
+
+//Unsubscribe from public and private channels.If keysecret() is set, private channels will be Unsubscribed by default
+$bitmex->keysecret([
+    'key'=>'xxxxxxxxx',
+    'secret'=>'xxxxxxxxx',
+]);
+$bitmex->unsubscribe([
+    //public
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+
+    //private
+    "affiliate",
+    "execution",
+    "order",
+    "margin",
+    "position",
+    "privateNotifications",
+    "transact",
+    "wallet"
+]);
+```
+
+Get all channel subscription data
+```php
+//The first way
+$data=$bitmex->getSubscribe();
+print_r(json_encode($data));
+
+//The second way callback
+$bitmex->getSubscribe(function($data){
+    print_r(json_encode($data));
+});
+
+//The third way is to guard the process
+$bitmex->getSubscribe(function($data){
+    print_r(json_encode($data));
+},true);
+```
+
+Get partial channel subscription data
+```php
+//The first way
+$data=$bitmex->getSubscribe([
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+]);
+print_r(json_encode($data));
+
+//The second way callback
+$bitmex->getSubscribe([
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+],function($data){
+    print_r(json_encode($data));
+});
+
+//The third way is to guard the process
+$bitmex->getSubscribe([
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+],function($data){
+    print_r(json_encode($data));
+},true);
+```
+
+Get partial private channel subscription data
+```php
+//The first way
+$bitmex->keysecret($key_secret);
+$data=$bitmex->getSubscribe();//Return all data of private channel
+print_r(json_encode($data));
+
+//The second way callback
+$bitmex->keysecret($key_secret);
+$bitmex->getSubscribe([//Return data private and market 
+    //public
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+
+    //private
+    "affiliate",
+    "execution",
+    "order",
+    "margin",
+    "position",
+    "privateNotifications",
+    "transact",
+    "wallet"
+],function($data){
+    print_r(json_encode($data));
+});
+
+//The third way is to guard the process
+$bitmex->keysecret($key_secret);
+$bitmex->getSubscribe([//Resident process to get data return frequency $bitmex->config['data_time']=0.5s
+    //public
+    'orderBook10:XBTUSD',
+    'quoteBin5m:XBTUSD',
+
+    //private
+    "affiliate",
+    "execution",
+    "order",
+    "margin",
+    "position",
+    "privateNotifications",
+    "transact",
+    "wallet"
+],function($data){
+    print_r(json_encode($data));
+},true);
+```
 
 
