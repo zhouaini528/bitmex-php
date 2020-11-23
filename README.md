@@ -169,8 +169,7 @@ try {
 
 ### Websocket
 
-Websocket has two services, server and client. The server is responsible for dealing with the new connection of the exchange, data receiving, authentication and login, etc. Client is responsible for obtaining and processing data.Support 'Spot' and 'Futures' and 'Coin Margined' and 'Swap USDT Margined' and 'Swap Option'
-#### Spot Websocket Demo
+Websocket has two services, server and client. The server is responsible for dealing with the new connection of the exchange, data receiving, authentication and login, etc. Client is responsible for obtaining and processing data.
 
 Server initialization must be started in cli mode.
 ```php
