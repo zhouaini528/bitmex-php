@@ -167,13 +167,7 @@ class SocketClient
         //print_r($this->client->global_key);
         $global_key=$this->client->global_key;
         foreach ($global_key as $k=>$v){
-            echo $k.PHP_EOL;
-            print_r($this->client->$v);
-
+            echo count($this->client->$v).$k.PHP_EOL;
         }
-    }
-
-    function test3($keysecret){
-        return $this->auth($keysecret);
     }
 }
