@@ -47,7 +47,7 @@ class SocketServer
 
     private function getBaseUrl($tag,$keysecret){
         if(isset($this->config['baseurl'])) return $this->config['baseurl'];
-        return 'ws://www.bitmex.com/realtime';
+        return $this->config['baseurl']='ws://www.bitmex.com/realtime';
     }
 
     private function newConnection(){
