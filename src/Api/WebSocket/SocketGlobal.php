@@ -19,12 +19,12 @@ trait SocketGlobal
 
     private function port(){
         switch ($this->config['baseurl'] ?? ''){
-            case 'ws://www.bitmex.com/realtime':{
-                return '2211';
+            case 'ws://testnet.bitmex.com/realtime':{
+                return '2217';
             }
-            //ws://testnet.bitmex.com/realtime
+            //ws://www.bitmex.com/realtime
             default:{
-                return '2212';
+                return '2216';
             }
         }
     }

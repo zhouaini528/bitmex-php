@@ -220,8 +220,8 @@ $bitmex->config([
     //Or set the log name
     'log'=>['filename'=>'bitmex'],
 
-    //Daemons address and port,default 0.0.0.0:2211
-    //'global'=>'127.0.0.1:2211',
+    //Daemons address and port,default 0.0.0.0:2216
+    //'global'=>'127.0.0.1:2216',
 
     //Channel subscription monitoring time,2 seconds
     //'listen_time'=>2,

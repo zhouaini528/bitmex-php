@@ -220,8 +220,8 @@ $bitmex->config([
     //可以设置日志名称，默认开启日志
     'log'=>['filename'=>'bitmex'],
 
-    //进程服务端口地址,默认 0.0.0.0:2211
-    //'global'=>'127.0.0.1:2211',
+    //进程服务端口地址,默认 0.0.0.0:2216
+    //'global'=>'127.0.0.1:2216',
 
     //Channel subscription monitoring time,2 seconds
     //'listen_time'=>2,
