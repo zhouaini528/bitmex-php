@@ -52,9 +52,9 @@ class SocketServer
 
     private function newConnection(){
         return function($tag,$keysecret){
-            $global=$this->client();
-
             $baseurl=$this->getBaseUrl($tag,$keysecret);
+
+            $global=$this->client();
 
             $this->connection[$this->connectionIndex] = new AsyncTcpConnection($baseurl);
             $this->connection[$this->connectionIndex]->transport = 'ssl';
