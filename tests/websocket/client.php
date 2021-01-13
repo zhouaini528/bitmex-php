@@ -270,6 +270,12 @@ switch ($action){
         $bitmex->client()->test2();
         break;
     }
+
+    case 10005:{
+        $bitmex->client()->test_reconnection();
+
+        break;
+    }
 }
 
 
