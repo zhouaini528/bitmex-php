@@ -196,6 +196,9 @@ $bitmex->config([
     //心跳时间默认 30 seconds
     //'ping_time'=>30,
 
+    //私有数据队列默认保存100条
+    //'queue_count'=>100,
+
     //baseurl host 地址设置
     //'baseurl'=>'ws://www.bitmex.com/realtime',//默认地址
     //'baseurl'=>'ws://testnet.bitmex.com/realtime',//test

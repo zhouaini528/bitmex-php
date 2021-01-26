@@ -196,6 +196,9 @@ $bitmex->config([
     //Heartbeat time,default 30 seconds
     //'ping_time'=>30,
 
+    //Number of messages WS queue shuold hold, default 100
+    //'queue_count'=>100,
+
     //baseurl host
     //'baseurl'=>'ws://www.bitmex.com/realtime',//default
     //'baseurl'=>'ws://testnet.bitmex.com/realtime',//test
@@ -231,6 +234,12 @@ $bitmex->config([
 
     //Heartbeat time,default 30 seconds
     //'ping_time'=>30,
+
+    //Number of messages WS queue shuold hold, default 100
+    //'queue_count'=>100,
+
+    //私有数据队列默认保存100条
+    //'queue_count'=>100,
 
     //baseurl host
     //'baseurl'=>'ws://www.bitmex.com/realtime',//default
