@@ -8,6 +8,9 @@ namespace Lin\Bitmex\Api\WebSocket;
 
 trait SocketFunction
 {
+    //标记分隔符
+    static $USER_DELIMITER='===';
+
     /**
      * @param array $sub
      * @return array
@@ -72,7 +75,7 @@ trait SocketFunction
      * @param $keysecret
      */
     protected function userKey(array $keysecret,string $sub){
-        return $keysecret['key'].'='.$sub;
+        return $keysecret['key'].self::$USER_DELIMITER.$sub;
     }
 
     /**
@@ -113,7 +116,7 @@ trait SocketFunction
     /**
      * 重新订阅
      */
-    private function reconnection($global,$type='public'){
+    private function reconnection($global,$type='public',array $keysecret=[]){
         $all_sub=$global->get('all_sub');
         if(empty($all_sub)) return;
 
@@ -122,10 +125,21 @@ trait SocketFunction
             foreach ($all_sub as $v){
                 if(!is_array($v)) $temp[]=$v;
             }
-
-            $global->save('add_sub',$this->resub($temp));
         }else{
+            $this->keysecret=$keysecret;
 
+            $sub=$all_sub[$keysecret['key']];
+            if(empty($sub)) return;
+
+            foreach ($sub as $v){
+                $t=explode(self::$USER_DELIMITER,$v);
+                if($t[1]=='privatenotifications') $t[1]='privateNotifications';//该私有频道单独处理，订阅对大小写敏感
+                $temp[]=$t[1];
+            }
         }
+
+        if(empty($temp)) return;
+
+        $global->save('add_sub',$this->resub($temp));
     }
 }

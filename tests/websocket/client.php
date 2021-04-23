@@ -24,7 +24,7 @@ $bitmex->config([
     'log'=>['filename'=>'future'],
 
     //Daemons address and port,default 0.0.0.0:2216
-    //'global'=>'127.0.0.1:2216',
+    'global'=>'127.0.0.1:22160',
 
     //Channel data update time,default 0.5 seconds
     //'data_time'=>0.5,
@@ -274,6 +274,16 @@ switch ($action){
     case 10005:{
         $bitmex->client()->test_reconnection();
 
+        break;
+    }
+
+    case 10006:{
+        $bitmex->client()->test_reconnection2();
+        break;
+    }
+
+    case 10008:{
+        $bitmex->client()->test_reconnection3($key_secret[0]['key']);
         break;
     }
 }

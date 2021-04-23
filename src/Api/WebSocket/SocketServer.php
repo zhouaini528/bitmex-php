@@ -64,6 +64,7 @@ class SocketServer
             //自定义属性
             $this->connection[$this->connectionIndex]->tag=$tag;//标记公共连接还是私有连接
             $this->connection[$this->connectionIndex]->tag_baseurl=$baseurl;
+            $this->connection[$this->connectionIndex]->tag_reconnection_num=0;//标记当前已重连次数
             if(!empty($keysecret)) $this->connection[$this->connectionIndex]->tag_keysecret=$keysecret;//标记私有连接
 
             $this->connection[$this->connectionIndex]->onConnect=$this->onConnect($keysecret);
@@ -112,6 +113,17 @@ class SocketServer
                 if(isset($data['table']) && isset($data['data'][0]['symbol'])) {
                     $table=strtolower($data['table'].':'.$data['data'][0]['symbol']);
                     $global->save($table,$data);
+
+                    /*$debug=$global->get('debug2');
+                    if($debug==1){
+                        $con->tag_data_time='1619151157';
+                        return;
+                    }*/
+
+                    //最后数据更新时间
+                    $con->tag_data_time=time();
+                    //成功接收数据重连次数回归0
+                    $con->tag_reconnection_num=0;
                     return;
                 }
             }else{
@@ -142,14 +154,22 @@ class SocketServer
             if(in_array($con->tag,$this->public_url)) {
                 //TODO如果连接失败  应该public  private 都行重新加载
                 $this->log($con->tag.' reconnection');
-                $con->reConnect(10);
-
                 $this->reconnection($global,'public');
             }else{
-                $this->log('connection close '.$con->tag_keysecret['key']);
+                $this->log('private connection close,ready to reconnect '.$con->tag_keysecret['key']);
 
-                Timer::del($con->timer_other);
+                //更改登录状态
+                $this->keysecretInit($con->tag_keysecret,[
+                    'connection'=>2,
+                    'auth'=>0,
+                ]);
+
+                //重新订阅私有频道
+                $this->reconnection($global,'private',$con->tag_keysecret);
+                //Timer::del($con->timer_other);
             }
+
+            $con->reConnect(10);
         };
     }
 
@@ -176,6 +196,26 @@ class SocketServer
             $this->debug($con,$global);
 
             $this->log('listen '.$con->tag);
+
+            //公共数据如果60秒内无数据更新，则断开连接重新订阅，重试次数不超过10次
+            if(in_array($con->tag,$this->public_url)) {
+                /*if(isset($con->tag_data_time)){
+                    //debug
+                    echo time() - $con->tag_data_time;
+                    echo PHP_EOL;
+                }*/
+
+                //public
+                if (isset($con->tag_data_time) && time() - $con->tag_data_time > 60 * ($con->tag_reconnection_num + 1) && $con->tag_reconnection_num <= 10) {
+                    $con->close();
+
+                    $con->tag_reconnection_num++;
+
+                    $this->log('listen ' . $con->tag . ' reconnection_num:' . $con->tag_reconnection_num . ' tag_data_time:' . $con->tag_data_time);
+                }
+            }else{
+                //private
+            }
         });
     }
 
@@ -185,10 +225,11 @@ class SocketServer
      * @param $global
      */
     private function debug($con,$global){
+        $debug=$global->get('debug');
+
         if(in_array($con->tag,$this->public_url)) {
             //public
-            $debug=$global->get('debug');
-            //print_r($debug);
+
             if(isset($debug['public']) && $debug['public'][$con->tag]=='close'){
                 $this->log($con->tag.' debug '.json_encode($debug));
 
@@ -199,6 +240,14 @@ class SocketServer
             }
         }else{
             //private
+            if(isset($debug['private'][$con->tag_keysecret['key']]) && $debug['private'][$con->tag_keysecret['key']]=='close'){
+                $this->log($con->tag_keysecret['key'].' debug '.json_encode($debug));
+
+                $debug['private'][$con->tag_keysecret['key']]='recon';
+                $global->save('debug',$debug);
+
+                $con->close();
+            }
         }
     }
 

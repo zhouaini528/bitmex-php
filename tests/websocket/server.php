@@ -17,12 +17,12 @@ $bitmex=new BitmexWebSocket();
 
 $bitmex->config([
     //Do you want to enable local logging,default false
-    'log'=>true,
+    //'log'=>true,
     //Or set the log name
     'log'=>['filename'=>'bitmex'],
 
     //Daemons address and port,default 0.0.0.0:2216
-    //'global'=>'127.0.0.1:2216',
+    'global'=>'127.0.0.1:22160',
 
     //Channel data update time,default 0.5 seconds
     //'data_time'=>0.5,
