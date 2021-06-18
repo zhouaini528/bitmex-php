@@ -24,6 +24,7 @@ class SocketServer
     private $config=[];
 
     private $public_url=['public','kline'];
+    private $local_global=['public'=>[],'private'=>[]];
 
     function __construct(array $config=[])
     {
@@ -112,7 +113,8 @@ class SocketServer
             if($con->tag=='public'){
                 if(isset($data['table']) && isset($data['data'][0]['symbol'])) {
                     $table=strtolower($data['table'].':'.$data['data'][0]['symbol']);
-                    $global->save($table,$data);
+                    //$global->save($table,$data);
+                    $this->local_global['public'][$table]=$data;
 
                     /*$debug=$global->get('debug2');
                     if($debug==1){
@@ -216,6 +218,11 @@ class SocketServer
             }else{
                 //private
             }
+        });
+
+        //异步保存数据，不然会有阻塞问题。 0.2秒保存一次
+        Timer::add(0.2, function() use($global) {
+            $global->save('global_local',$this->local_global);
         });
     }
 
