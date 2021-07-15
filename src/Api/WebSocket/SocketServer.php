@@ -253,6 +253,12 @@ class SocketServer
                 $debug['private'][$con->tag_keysecret['key']]='recon';
                 $global->save('debug',$debug);
 
+                //更改登录状态
+                $this->keysecretInit($con->tag_keysecret,[
+                    'connection'=>2,
+                    'auth'=>0,
+                ]);
+
                 $con->close();
             }
         }
@@ -303,7 +309,7 @@ class SocketServer
         if($con->tag!='public' && !empty($temp['private'])){
             //判断是否鉴权登录
             $keysecret=$global->get('keysecret');
-            if($keysecret[$con->tag_keysecret['key']]['auth']==0) {
+            if($keysecret[$con->tag_keysecret['key']]['auth']!=1 || $keysecret[$con->tag_keysecret['key']]['key']!=$con->tag_keysecret['key']) {
                 $this->log($con->tag_keysecret['key'].' subscribe need login ');
                 return;
             }

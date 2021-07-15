@@ -272,8 +272,7 @@ switch ($action){
     }
 
     case 10005:{
-        $bitmex->client()->test_reconnection();
-
+        $bitmex->reconPublic();
         break;
     }
 
@@ -283,7 +282,7 @@ switch ($action){
     }
 
     case 10008:{
-        $bitmex->client()->test_reconnection3($key_secret[0]['key']);
+        $bitmex->reconPrivate($key_secret[0]['key']);
         break;
     }
 }
