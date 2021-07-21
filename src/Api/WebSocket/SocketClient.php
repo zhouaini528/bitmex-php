@@ -143,7 +143,9 @@ class SocketClient
                         }
 
                         $data=$global->getQueue(strtolower($vv));
-                        $temp[strtolower($vv)]=$data;
+
+                        if(isset($t[1]) && !empty($t[1])) $temp[strtolower($vv).':'.$t[1]]=$data;
+                        else $temp[strtolower($vv)]=$data;
                     }
                 } else {
                     //public
