@@ -125,17 +125,26 @@ class SocketClient
 
         $global_local=$global->get('global_local');
         $temp=[];
-        //print_r($all_sub);die;
+
         //默认返回所有数据
         if(empty($sub)){
             foreach ($all_sub as $k=>$v){
-                if(is_array($v)) $table=$k;
-                else $table=$v;
+                if(is_array($v)) {
+                    //private
+                    if(empty($this->keysecret) || $this->keysecret['key']!=$k) continue;
 
-                //$data=$global->get(strtolower($table));
-                $data=$global_local['public'][strtolower($table)];
-                if(empty($data)) continue;
-                $temp[$table]=$data;
+                    foreach ($v as $vv){
+                        $data=$global->getQueue(strtolower($vv));
+                        $temp[strtolower($vv)]=$data;
+                    }
+                } else {
+                    //public
+
+                    //$data=$global->get(strtolower($table));
+                    $data=$global_local['public'][strtolower($v)];
+                    if(empty($data)) continue;
+                    $temp[$v]=$data;
+                }
             }
         }else{
             //返回规定的数据
@@ -153,6 +162,7 @@ class SocketClient
                 }else{
                     //public
                     //$data=$global->get(strtolower($v));
+
                     $data=$global_local['public'][strtolower($v)];
                 }
                 if(empty($data)) continue;
