@@ -134,6 +134,14 @@ class SocketClient
                     if(empty($this->keysecret) || $this->keysecret['key']!=$k) continue;
 
                     foreach ($v as $vv){
+                        //echo $vv.PHP_EOL;
+
+                        //判断是否有单独订阅的币对
+                        if(stripos($vv,':') !== 0) {
+                            $t=explode(':',$vv);
+                            $vv=$t[0];
+                        }
+
                         $data=$global->getQueue(strtolower($vv));
                         $temp[strtolower($vv)]=$data;
                     }
