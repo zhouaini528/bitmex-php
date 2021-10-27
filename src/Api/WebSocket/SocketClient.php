@@ -151,7 +151,10 @@ class SocketClient
                     //public
 
                     //$data=$global->get(strtolower($table));
-                    $data=$global_local['public'][strtolower($v)];
+
+                    $t=strtolower($v);
+                    if(isset($global_local['public'][$t])) $data=$global_local['public'][$t];
+
                     if(empty($data)) continue;
                     $temp[$v]=$data;
                 }
@@ -172,8 +175,8 @@ class SocketClient
                 }else{
                     //public
                     //$data=$global->get(strtolower($v));
-
-                    $data=$global_local['public'][strtolower($v)];
+                    $t=strtolower($v);
+                    if(isset($global_local['public'][$t])) $data=$global_local['public'][$t];
                 }
                 if(empty($data)) continue;
 
